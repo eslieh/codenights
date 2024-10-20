@@ -12,8 +12,8 @@
         <form action="#" method="post" class="andjk">
             <label for="nckjd">Edit Your Details</label>
             <div class="error-text" style="display: none;">Wring password</div>       
-            <div class="namesvfv"><input type="text" name="fname" class="fname" value="Eslieh" placeholder="Fisrt Name"><input type="text" value="Victor" name="lname" class="lname" placeholder="Last name"></div>
-            <input type="text" name="username" value="vick" placeholder="Edit Username" class="authinputs">
+            <div class="namesvfv"><input type="text" name="fname" class="fname" value="<?php echo $user['fname']?>" placeholder="Fisrt Name"><input type="text" value="<?php echo $user['lname']?>" name="lname" class="lname" placeholder="Last name"></div>
+            <input type="text" name="username" value="<?php echo $user['username']?>" placeholder="Edit Username" class="authinputs">
             <button class="loginBtn">Save Changes</button>
         </form>
         <script src="js/details.js"></script>

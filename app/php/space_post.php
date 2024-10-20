@@ -44,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Handle image upload (if any)
     if (!empty($_FILES['image']['name'])) {
-        $targetDir = "../../media/feeds/";
+        $targetDir = "../../media/profiles/";
         $fileName = basename($_FILES["image"]["name"]);
         $targetFilePath = $targetDir . $fileName;
         $imageFileType = strtolower(pathinfo($targetFilePath, PATHINFO_EXTENSION));
@@ -54,14 +54,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (in_array($imageFileType, $allowedTypes)) {
             if (move_uploaded_file($_FILES["image"]["tmp_name"], $targetFilePath)) {
                 // Insert post data into database
-                $
+                $update = mysqli_query($conn, "UPDATE spaces SET activity = activity + 1 WHERE space_id = '$space_id' ");
                 $sql = "INSERT INTO feeds (feed_id, user_id, space_id, image_url, thread, likes, activity, date_done)
                         VALUES ('$feed_id', '$userid', '$space_id', '$fileName', '$thread', 0, 0, '$now')";
-
                 if (mysqli_query($conn, $sql)) {
+                    $sql2 = mysqli_query($conn, "UPDATE users SET posts = posts +1 WHERE user_id = '$userid'");
                     $response['status'] = 'success';
                     $response['message'] = 'Post created successfully with image!';
-                    $response['image_url'] = $targetFilePath; // Return image URL if needed
                 } else {
                     $response['status'] = 'error';
                     $response['message'] = 'Database error: ' . mysqli_error($conn);
@@ -76,10 +75,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     } else {
         // If no image is uploaded, just insert the thread content
+        $update = mysqli_query($conn, "UPDATE spaces SET activity = activity + 1 WHERE space_id = '$space_id' ");
         $sql = "INSERT INTO feeds (feed_id, user_id, space_id, thread, likes, activity, date_done)
                 VALUES ('$feed_id', '$userid', '$space_id', '$thread', 0, 0, '$now')";
 
         if (mysqli_query($conn, $sql)) {
+            $sql2 = mysqli_query($conn, "UPDATE users SET posts = posts +1 WHERE user_id = '$userid'");
             $response['status'] = 'success';
             $response['message'] = 'Post created successfully!';
             $response['image_url'] = ''; // No image URL since no image was uploaded

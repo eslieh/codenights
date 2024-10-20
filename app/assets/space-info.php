@@ -20,22 +20,81 @@
         <div class="members-iof"><?php echo $space_data['members']?> Members</div>
         <div class="members-iof"><?php echo $space_data['activity']?> Posts</div>
     </div>
-    <div class="follow-and-create-post">
-            <button class="joinsjk">Join</button>
-        <div class="createPost">Create a post</div>
-    </div>
+    <?php
+        $check_member_query = mysqli_query($conn, "SELECT user_id FROM space_membership WHERE space_id = '{$space_data['space_id']}' AND user_id = '{$user['user_id']}'");
+        if (mysqli_num_rows($check_member_query) > 0) {
+            ?>
+            <div class="follow-and-create-post">
+                <button class="joinsjk">Joined</button>
+                <div class="createPost">Create a post</div>
+            </div>
+            <?php
+        }else{
+            ?>
+            <style>
+                .space-feed{
+                    display: none;
+                }
+            </style>
+            <div class="follow-and-create-post">
+                <button class="joinsjk">Join</button>
+                <div class="createPost" style="display: none;">Create a post</div>
+            </div>
+            <?php
+        }
+         
+    ?>
+    
 </div>
 <div class="space-feed">
 <?php
-    include('assets/home-feed.php');
+    $getfeeds = mysqli_query($conn, "SELECT * FROM feeds WHERE space_id = '{$space_data['space_id']}' ORDER BY date_done DESC LIMIT 10");
+    if(mysqli_num_rows($getfeeds) > 0){
+        include('assets/home-feed.php');
+    }
+    
 ?>
 <button></button>
 </div>
-<input type="text" value="<?php echo $space_data['user_id']?>" name="space_id">
 <script>
 document.addEventListener("DOMContentLoaded", (e) => {
     e.preventDefault();
     let createPost = document.querySelector(".createPost");
+    let joinButton = document.querySelector(".joinsjk");
+
+    // Handle the "Join" button click event
+    joinButton.addEventListener("click", function() {
+        let spaceId = "<?php echo $space_data['space_id']; ?>"; // Get space ID from PHP
+        let founderId = "<?php echo $space_data['admin']; ?>"
+        // Send an AJAX request to join the space
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'php/join-space.php', true); // Use the join PHP script
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                let response = JSON.parse(xhr.responseText);
+                if (response.status === 'success') {
+                    // Change the button text to "Joined"
+                    document.querySelector(".createPost").style.display = "flex";
+                    joinButton.textContent = "Joined";
+                    document.querySelector(".space-feed").style.display = "grid";
+                    joinButton.disabled = true; // Disable the button to prevent multiple clicks
+                } else {
+                    alert(response.message);
+                }
+            } else {
+                alert('An error occurred while trying to join the space.');
+            }
+        };
+
+        xhr.onerror = function() {
+            alert('Request failed.');
+        };
+
+        // Send the request with the space_id
+        xhr.send("space_id=" + spaceId + "&user_id="+ founderId);
+    });
 
     createPost.onclick = () => {
         createPost.style.cursor = "pointer";

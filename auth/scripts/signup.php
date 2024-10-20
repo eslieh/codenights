@@ -54,8 +54,8 @@
                     $followers = 0;
                     $posts = 0;
                     $ecnpass = md5($password);
-                    $insert = mysqli_query($conn, "INSERT INTO users(user_id,email, username, fname, lname ,password, followers, posts )
-                        VALUES('$userid', '$email', '$username', '$fname', '$lname', '$ecnpass', '$followers', '$posts')");
+                    $insert = mysqli_query($conn, "INSERT INTO users(user_id,email, username, fname, lname ,password, followers, posts, lat_not_id )
+                        VALUES('$userid', '$email', '$username', '$fname', '$lname', '$ecnpass', '$followers', '$posts', 0)");
                     if($insert){
                         $expire = time() + (60 * 60 * 24) * 7;
                         

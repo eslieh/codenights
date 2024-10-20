@@ -298,17 +298,40 @@ button.like {
   transition: all ease 0.4s;
   cursor: pointer;
 }
+button.like.liked {
+  background: #00ee5f;
+  color: white;
+  border: 2px solid #00ee5f;
+}
 button.like:hover {
   padding: 6px;
   padding-left: 22px;
   padding-right: 22px;
   border: 2px solid #00ee5f;
-  color: #00ff5e;
+  color: white;
   transition: all ease 0.4s;
 }
 .account-andnot {
   position: absolute;
   right: 0;
+}
+button.njkcf {
+  cursor: pointer;
+  border-radius: 17px;
+  border: none;
+  padding: 8px;
+  width: 57%;
+}
+div#cancel {
+  position: absolute;
+  right: 3%;
+  margin-top: -9px;
+  background: red;
+  width: 24px;
+  height: 24px;
+  display: grid;
+  place-content: center;
+  border-radius: 6px;
 }
 img.account-conrne {
   width: 50px;
@@ -746,14 +769,16 @@ img.account-imah {
   gap: 10px;
   align-items: center;
 }
+
 .user-nameccdd {
   font-weight: bolder;
-  font-size: 49px;
+  font-size: 20px;
 }
 .myname-dhbjc {
   display: flex;
-  margin-top: -19px;
+  margin-top: -8px;
   font-weight: 900;
+  font-size: 14px;
 }
 .followers-inco {
   display: flex;
@@ -923,6 +948,13 @@ img.account-conrne {
   border-radius: 37px;
   object-fit: cover;
 }
+button.njkcf {
+  cursor: pointer;
+  border-radius: 17px;
+  border: none;
+  padding: 8px;
+  width: 90%;
+}
 
 }
 @media only screen and (max-width: 600px) {
@@ -934,6 +966,13 @@ img.account-conrne {
     padding: 9vw;
     gap: 6vw;
 }
+button.njkcf {
+  cursor: pointer;
+  border-radius: 17px;
+  border: none;
+  padding: 8px;
+  width: 90%;
+}
 section.homecontents {
   padding: 4px;
   width: 100%;
@@ -944,7 +983,8 @@ section.homecontents {
   overflow: auto;
   padding: 0px;
   margin-left: 0px;
-  padding-top: 7vh;
+  padding-top: 10vh;
+  padding-bottom: 20vh;
 }
 .my-accout-container {
   padding: 9px;

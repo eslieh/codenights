@@ -1,7 +1,7 @@
 <div class="spaces-list">
     <a href="create.php"><button class="creategh"><i class="fa-solid fa-plus"></i> Create Space</button></a>
     <?php
-        $spacesQ = mysqli_query($conn, "SELECT space_id, members,space_name, them_color, space_description FROM spaces WHERE space_id IN (SELECT space_id FROM space_membership WHERE user_id = '{$_SESSION['user_id']}') ORDER BY date_created DESC LIMIT 12");
+        $spacesQ = mysqli_query($conn, "SELECT space_id, members,space_name, them_color, space_description FROM spaces ORDER BY date_created DESC LIMIT 12");
         if(mysqli_num_rows($spacesQ) > 0)
         {
             while($space_data = mysqli_fetch_assoc($spacesQ)){
