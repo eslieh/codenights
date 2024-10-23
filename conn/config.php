@@ -1,8 +1,8 @@
 <?php
   // $hostname = "localhost:3306";
-  // $username = "mealscok_meals";
-  // $password = "-cCtu@NY39w5L8";
-  // $dbname = "mealscok_meals";
+  // $username = "lqzluuep_codenights";
+  // $password = "2298416425092150Vic@2004";
+  // $dbname = "lqzluuep_meals";
   $hostname = "localhost";
   $username = "root";
   $password = "";

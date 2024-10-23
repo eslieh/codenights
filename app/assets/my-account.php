@@ -9,7 +9,9 @@
         </div>
         <div class="followers-inco">
             <div class="flex-folloers">
-                <div class="numbercou"><?php echo $user['followers']?></div> 
+                <div class="numbercou" id="followercount"><a href="followers.php?user_id=<?php echo $user['user_id']?>">
+                <?php echo $user['followers']?>
+                </a></div> 
                 <div class="fncjk">Followers</div>
             </div>
             <div class="flex-folloers">
