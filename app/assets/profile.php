@@ -5,7 +5,7 @@
         <?php
     }else{
         $userId = $_GET['user_id'];
-        $uquery = mysqli_query($conn, "SELECT username, profile, fname, lname, followers, posts FROM users WHERE user_id = '{$userId}'");
+        $uquery = mysqli_query($conn, "SELECT username, user_id, profile, fname, lname, followers, posts FROM users WHERE user_id = '{$userId}'");
         if(mysqli_num_rows($uquery)){
             $userDetails = mysqli_fetch_assoc($uquery);
         }else{
@@ -26,7 +26,9 @@
         </div>
         <div class="followers-inco">
             <div class="flex-folloers">
-                <div class="numbercou" id="followercount"><?php echo $userDetails['followers']?></div> 
+                <div class="numbercou" id="followercount"><a href="followers.php?user_id=<?php echo $userDetails['user_id']?>">
+                <?php echo $userDetails['followers']?>
+                </a></div> 
                 <div class="fncjk">Followers</div>
             </div>
             <div class="flex-folloers">

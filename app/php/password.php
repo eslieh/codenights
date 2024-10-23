@@ -14,7 +14,7 @@
             if($datapass === $encold){
                 if($cnew === $new){
                     $ecnNew = md5($new);
-                    $update = mysqli_query($conn, "UPDATE users SET password = '$ecnNew'");
+                    $update = mysqli_query($conn, "UPDATE users SET password = '$ecnNew' WHERE user_id = '$userid'");
                     if($update){
                         echo "success";
                     }else{

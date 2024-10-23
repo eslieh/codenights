@@ -10,8 +10,12 @@
 <body class="home-feed">
     <?php include("assets/nav-bar.php")?>
     <section class="homecontents">
-        
     <?php
+        if($user['password'] === $default){
+            ?>
+            <script>location.href="password.php"</script>
+            <?php
+        };
         $limit = 10; // Number of posts per page
         $offset = isset($_GET['offset']) ? (int)$_GET['offset'] : 0; // Default offset is 0 if not provided
     

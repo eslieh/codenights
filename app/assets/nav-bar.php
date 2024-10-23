@@ -10,6 +10,8 @@
         if(mysqli_num_rows($q) > 0){
             $user = mysqli_fetch_assoc($q);
             $profile = $user['profile'];
+            $default = "7f962b853bda0764ed39e9f064f13b3a";
+            
             if($profile == null){
                 $profileUrl = "https://i.pinimg.com/564x/b7/63/8f/b7638fef96e65cceb1a2273bd5ddd7d9.jpg";
             }else{
@@ -27,16 +29,17 @@
                 <div class="nakme">Home</div>
             </div>
         </a>
+     
+        <a href="search.php">
+            <div class="navigator-container" id="account">
+                <div class="icons0c"><i class="fa-solid fa-magnifying-glass"></i></div>
+                <div class="nakme">Search</div>
+            </div>
+        </a>
         <a href="spaces.php">
             <div class="navigator-container" id="spaces">
                 <div class="icons0c"><i class="fa-solid fa-tower-broadcast"></i></div>
                 <div class="nakme">Spaces</div>
-            </div>
-        </a>
-        <a href="account.php">
-            <div class="navigator-container" id="account">
-                <div class="icons0c"><i class="fa-solid fa-user"></i></div>
-                <div class="nakme">Account</div>
             </div>
         </a>
     </nav>

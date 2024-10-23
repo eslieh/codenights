@@ -17,7 +17,7 @@
         <span class="about-space"><?php echo $space_data['space_description']?></span>
     </div>
     <div class="activitucdnk">
-        <div class="members-iof"><?php echo $space_data['members']?> Members</div>
+        <a href="members.php?space_id=<?php echo $space_data['space_id']?>"><div class="members-iof"><?php echo $space_data['members']?> Members</div>    </a>
         <div class="members-iof"><?php echo $space_data['activity']?> Posts</div>
     </div>
     <?php
